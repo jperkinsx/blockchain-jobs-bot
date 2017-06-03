@@ -60,6 +60,11 @@ function messageHandler(session, message) {
                     , controls: defaultControls
                     , session : session
                     }
+  if(message.body === 'ALT+F4') {
+    session.reset()
+    respond(msgResponse)
+    return
+  }
   msgResponse = Hiring.msgHandler(message, msgResponse)
   msgResponse = Seeking.msgHandler(message, msgResponse)
   respond(msgResponse)
