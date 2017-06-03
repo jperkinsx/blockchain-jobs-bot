@@ -32,11 +32,14 @@ function onMessage(session, message) {
 
 function onCommand(session, command) {
   switch (command.content.value) {
-    case 'ping':
-      pong(session)
+    case 'hiring':
+      hire(session)
       break
-    case 'count':
-      count(session)
+    case 'looking':
+      look(session)
+      break
+    case 'how-work':
+      howDoesThisWork(session)
       break
     case 'donate':
       donate(session)
@@ -69,11 +72,20 @@ function onPayment(session, message) {
 // STATES
 
 function welcome(session) {
-  sendMessage(session, `Hello Token!`)
+  let welcomeMessage = `BlockChain Jobs Intro!`
+  sendMessageWithHowDoesThisWork(session, welcomeMessage )
 }
 
-function pong(session) {
-  sendMessage(session, `Pong`)
+function hire(session) {
+  sendMessage(session, `Dummy hire!`)
+}
+
+function look(session) {
+  sendMessage(session, `Dummy look!`)
+}
+
+function howDoesThisWork(session) {
+  sendMessage(session, `Dummy howDoesThisWork!`)
 }
 
 // example of how to store state on each user
@@ -93,14 +105,28 @@ function donate(session) {
 // HELPERS
 
 function sendMessage(session, message) {
-  let controls = [
-    {type: 'button', label: 'Ping', value: 'ping'},
-    {type: 'button', label: 'Count', value: 'count'},
-    {type: 'button', label: 'Donate', value: 'donate'}
-  ]
+  let controls =
+    [ {type: 'button', label: 'Donate', value: 'donate'}
+    , {type: 'button', label: `I'm Hiring`, value: 'hiring'}
+    , {type: 'button', label: `I'm looking for a job`, value: 'looking'}
+    ]
   session.reply(SOFA.Message({
     body: message,
     controls: controls,
     showKeyboard: false,
+  }))
+}
+
+
+function sendMessageWithHowDoesThisWork(session, message) {
+  let controls =
+    [ {type: 'button', label: `How does this work?`, value: 'how-work'}
+    , {type: 'button', label: `I'm Hiring`, value: 'hiring'}
+    , {type: 'button', label: `I'm looking for a job`, value: 'looking'}
+    ]
+  session.reply(SOFA.Message({
+    body: message,
+    controls: controls,
+    showKeyboard: true,
   }))
 }
