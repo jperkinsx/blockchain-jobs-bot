@@ -66,16 +66,6 @@ function cmdHandler(command, msgResponse) {
 // HIRE FUNCTIONS
 //---------------------------------------
 
-function hire(msgResponse) {
-  let hireMessage = `Great, let's get started creating your job listing. You'll be prompted to input the needed information. When everything looks correct, you can submit it and I'll be able to tell job seekers about the opportunity.`
-  let controls =
-    [ {type: 'button', label: `I'm ready to start`, value: 'get-started'}
-    ]
-  msgResponse.message = hireMessage
-  msgResponse.controls = controls
-  return msgResponse
-}
-
 function getStarted(msgResponse) {
   console.log('getting started!!!')
   let hireMessage = `List some job category tags to give us an idea about the job. For example "Ethereum, Javascript, UI Design"`
@@ -88,6 +78,17 @@ function getStarted(msgResponse) {
   msgResponse.controls = controls
   return msgResponse
 }
+
+function hire(msgResponse) {
+  let hireMessage = `Great, let's get started creating your job listing. You'll be prompted to input the needed information. When everything looks correct, you can submit it and I'll be able to tell job seekers about the opportunity.`
+  let controls =
+    [ {type: 'button', label: `I'm ready to start`, value: 'get-started'}
+    ]
+  msgResponse.message = hireMessage
+  msgResponse.controls = controls
+  return msgResponse
+}
+
 
 //---------------------------------------
 // HIRE CONSTANTS
