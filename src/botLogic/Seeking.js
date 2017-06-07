@@ -4,20 +4,23 @@ console.log(axios)
 // SEEKING HANDLERS
 //---------------------------------------
 
-function msgHandler(message, msgResponse) {
-  console.log('uhhhh')
-  return msgResponse
+function msgHandler(message) {
+  return (msgResponse) => {
+    return look(msgResponse)
+  }
 }
 
-function cmdHandler(command, msgResponse) {
-  switch (command.content.value) {
-    case 'looking':
-      return look(msgResponse)
-      break
-    default :
-      return msgResponse
-      break
+function cmdHandler(command) {
+  return (msgResponse) => {
+    switch (command.content.value) {
+      case 'looking':
+        return look(msgResponse)
+        break
+      default :
+        return msgResponse
+        break
     }
+  }
 }
 
 //---------------------------------------
